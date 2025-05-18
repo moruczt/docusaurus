@@ -1,3 +1,8 @@
+---
+title: User Guide
+sidebar_position: 1
+---
+
 # Petstore API - Felhasználói útmutató
 Az alábbi útmutató a Petstore API használatát hivatott bemutatni. Az API lehetővé teszi a felhasználónak, hogy eladó kisállatait (pet) rögzítse és kezelje. Az alábbi funkciók lehetővé teszik az új kisállatok rögzítését, lekérését, szerkesztését és törlését.
 

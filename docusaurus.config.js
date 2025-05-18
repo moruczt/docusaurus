@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: 'Morucz Tamas documentation site',
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
@@ -43,10 +43,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          docItemComponent: "@theme/ApiItem",
         },
         blog: {
           showReadingTime: true,
@@ -54,10 +51,6 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -70,13 +63,35 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'openapi', // A plugin egyedi azonosítója
+        docsPluginId: 'classic',
+        config: {
+          petstore: {  // Egyedi azonosító az API doksinak
+            specPath: 'openapi/gadgetinventory-api.yaml', // Az OpenAPI fájl elérési útja
+            outputDir: 'docs/gadgetinventory', // A generált Markdown fájlok helye
+            sidebarOptions: {
+              groupPathsBy: 'tag',  // Csoportosítás tagek alapján az oldalsávban
+          // További opciók a plugin dokumentációja szerint
+            },
+            // Opcionális: downloadButton: true,
+          },
+        }
+      }
+    ]
+  ],
+  themes: ['docusaurus-theme-openapi-docs'],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'MoruczT',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -93,9 +108,12 @@ const config = {
             sidebarId: 'guideSidebar',
             label: 'Guides',
             position: 'left',
-            // Ha külön oldalsávot szeretnél neki:
-            // type: 'docSidebar',
-            // sidebarId: 'guideSidebar',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'ginventorySidebar',
+            label: 'GadgetInventory',
+            position: 'left',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {

@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: GadgetInventory API
+  description: Az API lehetővé teszi a fejlesztőknek, hogy a GadgetInventory eszközkezelő rendszert integrálja a saját applikációjukba.
+  version: 1.0.0
+  contact: 
+    name: Mórucz Tamás
+    email: tamas.morucz@gmail.com
+servers:
+  - url: "https://api.gadgetinventory.com"
+    description: Éles környezet
+paths:
+  /eszkozok:
+    post:
+      tags: 
+        - Eszközök
+      summary: Új eszköz létrehozása
+      description: A végpont meghívásával új eszköz vehető fel az eszköztárba.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Eszkoz'
+      responses:
+        201:
+          description: Sikeres létrehozás esetén. A válasz törzse tartalmazza a létrehozott "Eszköz" objektum adatait.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eszkoz'
+        400:
+          description: Hibás kérés esetén (pl. hiányzó kötelező mező).
+    get:
+      tags:
+        - Eszközök
+      summary: Az összes eszköz listázása, szűrési lehetőséggel.
+      description: A végpont meghívásával lekérdezhető az összes, szűrésnek megfelelő eszköz, és azok részletes információi.
+      parameters:
+        - in: query
+          name: tipus
+          description: Szűrés az eszköz típusára.
+          schema:
+            type: string
+        - in: query
+          name: gyarto
+          description: Szűrés az gyártóra.
+          schema:
+            type: string
+        - in: query
+          name: raktaron
+          description: Csak a raktáron lévő (true) vagy csak a nem raktáron lévő (false) eszközök listázása.
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: Sikeres lekérdezés. A válasz törzse egy tömb, amely "Eszköz" objektumok listáját tartalmazza a szűrési feltételeknek megfelelően (vagy az összeset, ha nincs szűrés).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Eszkoz'
+                    
+  /eszkozok/{eszkozId}:
+    get:
+      tags:
+        - Eszközök
+      summary: Egy konkrét eszköz lekérdezése azonosító alapján.
+      description: A végpont meghívásával lekérdezhető az eszköz részletes információi.
+      parameters:
+        - in: path
+          name: eszkozId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Sikeres lekérdezés. A válasz törzse tartalmazza a megtalált "Eszköz" objektum adatait.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Eszkoz'
+        404:
+          description: A megadott eszkozId-val nem található eszköz.
+components:
+  schemas:
+    Eszkoz:
+      type: object
+      required: ["nev","gyarto","tipus","raktaron"]
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        nev:
+          type: string
+        gyarto:
+          type: string
+        tipus:
+          type: string
+          enum: ["Okosotthon", "Viselhető", "Audio", "Egyéb"]
+        ar:
+          type: number
+          format: float
+        raktaron:
+          type: boolean
+        utolsoFrissites:
+          type: string
+          format: date-time
+          readOnly: true

@@ -1,0 +1,71 @@
+---
+id: uj-eszkoz-letrehozasa
+title: "Új eszköz létrehozása"
+description: "A végpont meghívásával új eszköz vehető fel az eszköztárba."
+sidebar_label: "Új eszköz létrehozása"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVbFu40YQ/ZXFVAnAk3VBKlZxAie5IvAh56TRqRiRI3LF5S5vd6g7UtAHpHSbTqWKVAZcpF34v5IhJUtnG6lSBVFhybM7b97MvJndAGMRIJ3BVeireN/H+wrmCeQUMq8b1s5CCpdqHfdF4yyrmooy/rGOuxB3azQq/rlSNLqqNZXED7dqSUZhfzRz3PkFTiABTx9aCvytyztIN8O/2lMOKfuWEsicZbIsR9g0Rmco4S9WQThsIGQl1Si/uGsIUnCLFWV8wB2BZmBpDQkUHXp2kADrpg1yBStG76zk1njXkGdNQcB0fgYZ2GtbQAJL52tkSKFtdT6EwPzamm7kuk2GOM/8to+RXzoaubwQjGxbC/frygXHXDoLCfyqA5mhnpDAZZtrSeeq6OJ+AfNtAujPoGxbL8if814ahyxRHzM/3V44ZwitnLbsTHDfex2CZnqR3SNkjkyvWNf0vB5DdmzET3TkethuxegpNM6GEfir6Wv5+lxa73RFnoIycc+eStfHXVAUiOPeTpQIb2cw9Irjve8DKUbPaGrse1R48nLM6v1Rw+9BiTYqbmuFOTJqFvn9r6//nL6+nk6fS+pHvRARVXHv4/5RTOqLxkxUqePOdn28U1W8ZzLUP9yqWv5+OQFBrIlLl0MKjQvS+wa5hBQuaAjrKkggkF+Tl6W5gdYbSKFkbkJ6cYGNnhSYF8Tarsmy890kczU83afxN0NC8N7bjnpi2M4TEB3+fNqQV5+wbiTjzaiFU8GOEjhZDp3/vMHSwOl5fw7K0nY56udQ0B8Gwm+OhNXl2zfPCF/2YlZmXPDruFdModcK1ZJWhkLPD7eVpSpRpSs6heop6OEtqKgn83CrPNk89ORZactU+LgzK5nngKu4YzWMZxV3mY53q7YaXw+p+cjm9WQ6mR4GGrNhoC3WkstP8c63Wa9usI47mUuqUUuHGGsMk9rJ6TeFGIfGSMel0TXaM5T4++lNO99L+LQum9NO+bfeyMN0MH3ii8agHqdIVLY5aHEGj1qcJ1CKTNMZbDYLDPSLN9utmD+05DtIZ/ME1ug1LqTVM5nrkjAnP4i3ou7vbL8bU3h1I5HlummFwbMVuU2OHpdZRg3/49352SS9vX53AwksDs9+7XLx8fhx2JsfIQVIwA0lHRbEYNuAQVu0WMjdEVM+fwEudCn4
+sidebar_class_name: "post api-method"
+info_path: docs/gadgetinventory/gadgetinventory-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Új eszköz létrehozása"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/eszkozok"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+A végpont meghívásával új eszköz vehető fel az eszköztárba.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["nev","gyarto","tipus","raktaron"],"properties":{"id":{"type":"string","format":"uuid","readOnly":true},"nev":{"type":"string"},"gyarto":{"type":"string"},"tipus":{"type":"string","enum":["Okosotthon","Viselhető","Audio","Egyéb"]},"ar":{"type":"number","format":"float"},"raktaron":{"type":"boolean"},"utolsoFrissites":{"type":"string","format":"date-time","readOnly":true}},"title":"Eszkoz"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Sikeres létrehozás esetén. A válasz törzse tartalmazza a létrehozott \"Eszköz\" objektum adatait.","content":{"application/json":{"schema":{"type":"object","required":["nev","gyarto","tipus","raktaron"],"properties":{"id":{"type":"string","format":"uuid","readOnly":true},"nev":{"type":"string"},"gyarto":{"type":"string"},"tipus":{"type":"string","enum":["Okosotthon","Viselhető","Audio","Egyéb"]},"ar":{"type":"number","format":"float"},"raktaron":{"type":"boolean"},"utolsoFrissites":{"type":"string","format":"date-time","readOnly":true}},"title":"Eszkoz"}}}},"400":{"description":"Hibás kérés esetén (pl. hiányzó kötelező mező)."}}}
+>
+  
+</StatusCodes>
+
+
+      

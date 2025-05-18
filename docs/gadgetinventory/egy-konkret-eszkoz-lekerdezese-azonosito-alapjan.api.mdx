@@ -1,0 +1,71 @@
+---
+id: egy-konkret-eszkoz-lekerdezese-azonosito-alapjan
+title: "Egy konkrét eszköz lekérdezése azonosító alapján."
+description: "A végpont meghívásával lekérdezhető az eszköz részletes információi."
+sidebar_label: "Egy konkrét eszköz lekérdezése azonosító alapján."
+hide_title: true
+hide_table_of_contents: true
+api: eJytVbuO40YQ/JVBRzbAk2TjIkZWIB82MM6wz050G7TIXnLE4QxvpimYFPgBDvcTFCq4aIH9gcH+16Gpx+pW63NykaR5VHX1VLW2wFgESJewCH0VH/v4WMFtAjmFzOuGtbOQwlxt4r5onGVVU1HGz5u4C3G3QaMMVXHvc+pL4qd7hb2iA5DycR96Q0xBaXvnfB13mY4PegIJNOixJiYv1FvQQtIgl5CAxZogBUFx/U0OCXj61GpPOaTsW0ogZCXVCOkWuGvkbGCvbQEJCAsypNC2OodhuJXLoXE2UJDzP89m8vG1uD91RZ7Cs5K4DxMlkncGQ684Pvo+kGL0jKbGvkeF0gdGE3eG1cdT7z6Ccqs1VdzWCnNk1CxiM2eZLAszNo3RGQrzdB2EfnstRzAy/kr4EixtIIGiQ88OEmDdtEGOYMXonZU3a7xryLM+aNX5/3dIKDB/b0136O2QjDxX94Yz82tbh1peISPb1lL7+8oFx1w6Cwn8rQOZ0SyQwLzNtchZFF3cr+B2SAD9BZRt6xX5y7rvjEMW1rPy59Mr5wyhld2WnQnuV69D0EyvVneGzJHpDeuarvsxqmMj9xajIWEYZPHt7O21keZiCswdszq5941ExFKtDl4pkePDKSATEKSauHQ5pFAQj8HgElKYHgBcNd2eoAZIIJDfnDLTegMplMxNSKdTbPSkwLwg1nZDlp3vJpmr4WWS47+Ggqrio7cd9cQgGZF4jh06Sn03At2cgNT895sroHkvy8rQ+JSbuFdModcK1R2tDYWen+4rS1WiSld0CtVL0GMXKurJPN0rTzYPPXlW2jIVPu7MWnIWcB13rMbgVIcJsm6rFUqwpBeHan6azCazY9QwG6N2nCO/xQffZr36gHXcSWKoRi2dY6wxTGonu78Usjg2TN6kcYFrtBcoi6JTlbOVj3s+D7jLgUEKe2ddiJ/lhdFgs447O3nZtu3zMPj+Q/VocKZ/eNoY1IcgiE22R18t4eQrSCA9j9jbBEoXWPa32xUG+subYZDlTy35DtLlbQIb9BpX4o/lFnId5HsO6R2aQN9Q+cMfxyH2o/qvEo+LaDt5UzSt/IIEKuou/wgGmQ4lYU5+rOGwPc8yavji4tWIFYefU/Zu8QGG4Qt3EpFL
+sidebar_class_name: "get api-method"
+info_path: docs/gadgetinventory/gadgetinventory-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Egy konkrét eszköz lekérdezése azonosító alapján."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/eszkozok/{eszkozId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+A végpont meghívásával lekérdezhető az eszköz részletes információi.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"eszkozId","required":true,"schema":{"type":"string","format":"uuid"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Sikeres lekérdezés. A válasz törzse tartalmazza a megtalált \"Eszköz\" objektum adatait.","content":{"application/json":{"schema":{"type":"object","required":["nev","gyarto","tipus","raktaron"],"properties":{"id":{"type":"string","format":"uuid","readOnly":true},"nev":{"type":"string"},"gyarto":{"type":"string"},"tipus":{"type":"string","enum":["Okosotthon","Viselhető","Audio","Egyéb"]},"ar":{"type":"number","format":"float"},"raktaron":{"type":"boolean"},"utolsoFrissites":{"type":"string","format":"date-time","readOnly":true}},"title":"Eszkoz"}}}},"404":{"description":"A megadott eszkozId-val nem található eszköz."}}}
+>
+  
+</StatusCodes>
+
+
+      
