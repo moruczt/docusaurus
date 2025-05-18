@@ -7,7 +7,7 @@
 # Generated files
 .docusaurus
 .cache-loader
-# docs/gadgetinventory
+docs/gadgetinventory
 
 # Misc
 .DS_Store
