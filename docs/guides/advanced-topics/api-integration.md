@@ -5,14 +5,72 @@ sidebar_position: 1
 
 # API Integration
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultricies maximus est ut fringilla. Proin hendrerit tincidunt dapibus. Suspendisse ultrices velit a metus imperdiet, ut consectetur nunc mattis. Fusce imperdiet cursus ligula, nec tincidunt nisl rutrum a. Maecenas tortor urna, viverra a nunc vel, pharetra vehicula leo. Etiam auctor velit est, in dignissim felis aliquam eget. Duis molestie libero id metus tempus, ac dictum est feugiat. Vestibulum nec condimentum dui, vel fermentum nibh. Maecenas imperdiet consectetur dui quis ullamcorper. Nulla vehicula diam gravida diam accumsan venenatis.
+> Original API guide: [MERGE](https://docs.merge.dev/basics/authentication/)
 
-Fusce vel tincidunt turpis. Aenean eros tortor, ullamcorper sed justo id, tempor lacinia velit. Nulla non pulvinar libero. Integer egestas nibh nec mi blandit elementum. Suspendisse in bibendum elit. Fusce massa lacus, blandit ac lacus a, iaculis egestas velit. In pellentesque feugiat odio, ut maximus dui bibendum in. Nulla eu tempor leo, et efficitur tellus. Duis ultrices, justo sit amet commodo laoreet, justo nulla congue erat, et tincidunt metus est convallis est. Vestibulum dignissim consequat mattis. Nam vehicula, dui in auctor tincidunt, risus turpis scelerisque arcu, sed lacinia elit lorem a elit.
+# Authentication
 
-Quisque nec luctus neque, sed maximus nisl. Cras sed sagittis leo. Etiam malesuada id magna id pharetra. Duis at posuere ligula, in vestibulum quam. Sed gravida mi ac erat finibus, id consequat diam lobortis. Curabitur in dui sagittis, condimentum massa eget, imperdiet urna. Proin malesuada quis magna non porta. Nulla eget dolor eget lorem iaculis sollicitudin.
+Learn how to authenticate your requests to the Merge API.
 
-Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras gravida bibendum mauris, a imperdiet nunc lacinia non. Suspendisse vel faucibus metus. Proin vel convallis lacus. Aenean dignissim dui a felis blandit, auctor mattis tortor volutpat. Cras sit amet ante justo. Sed erat tellus, dapibus non sapien eu, faucibus volutpat odio. In auctor gravida augue, id rhoncus diam posuere eget. Praesent eleifend metus in erat molestie, mollis consectetur felis fermentum. In placerat risus nec arcu faucibus tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque vitae varius justo. Nunc massa odio, porta at sem et, interdum varius eros. Sed eu facilisis tortor, non vestibulum ligula. Maecenas congue, sem quis hendrerit ornare, lorem lorem pellentesque lectus, nec aliquet eros nisi et libero.
+## Overview
 
-Duis enim nulla, tristique eget sem posuere, faucibus elementum ex. Fusce sed facilisis ante, in hendrerit justo. Nulla facilisi. Curabitur eleifend, dolor vitae tristique elementum, ipsum neque efficitur odio, et hendrerit metus urna a eros. Quisque semper sodales neque, sit amet rhoncus nulla consectetur fermentum. Suspendisse dapibus lorem porttitor turpis sollicitudin maximus. Nullam faucibus ex et ornare condimentum. Suspendisse ac magna urna. Sed quis lacinia purus, at tristique nunc. Sed ut magna vel turpis aliquam luctus a sagittis magna. Vivamus turpis enim, finibus nec nisi ut, lobortis rhoncus libero. Nulla facilisi. Curabitur vitae eros metus. Pellentesque ac sapien luctus, faucibus velit et, convallis nulla. Donec pulvinar lectus at arcu vehicula porta. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+When making requests to the Merge API, you will need to pass proper authentication parameters so that you can identify yourself as an authorized user.
 
-Sed nulla ligula, tincidunt sed sodales vitae, hendrerit sed libero. Aenean elementum quam et nunc porta posuere. Mauris sit amet mi magna. Mauris tempus fringilla gravida. Morbi vestibulum elit eleifend libero tincidunt, efficitur faucibus justo dignissim. Mauris porttitor condimentum pharetra. Nunc non ex in libero tempus euismod quis vel libero. Morbi fringilla sapien quis mauris lacinia fringilla. In dui velit, varius quis tincidunt ac, tincidunt ut erat. Praesent quis magna at ex rhoncus euismod et vitae lectus. Donec at ultrices lacus, eu porttitor nisi. Mauris sem metus, varius quis enim ac, cursus molestie felis. Integer tempus pellentesque bibendum. Nulla a faucibus sapien.
+There are two primary authentication protocols we will explore below:
+
+* [Merge API key](https://docs.merge.dev/basics/authentication/#api-key)
+* [Linked Account tokens](https://docs.merge.dev/basics/authentication/#account-tokens)
+
+The credentials you retrieve from these protocols need to be included in the headers for every request you send to the Merge API.
+
+## Merge API key
+
+For any request you make when communicating with the Merge API, you will need an API key to authenticate yourself as an authorized user. You should have saved your access key after creating it in Merge, but if you no longer have it, you can regenerate your Production Access Key or create a new Remote Production or Test Access Key in [API Keys](https://app.merge.dev/keys?_gl=1*1k8c3bn*_gcl_au*NzEzMjExNTk3LjE3NDc1ODg4OTc.*_ga*MTc4NzY4NjYyMi4xNzQ3NTg4ODk4*_ga_S6X9VBDBJN*czE3NDc1ODg4OTckbzEkZzAkdDE3NDc1ODg4OTgkajU5JGwwJGgwJGRVQVM0aU8yXzZHM29BejBOVlJKbjV3VGxIclZndEdwaGxB) in your Merge Dashboard.
+
+If you’re writing your own requests, add your API key with a "Bearer " prefix as a header called `Authorization` to authorize your Merge API requests. This header must be included in every request in this format:
+
+`Authorization: Bearer YOUR_API_KEY`
+
+If you’re using the Merge SDK in your backend to communicate with Merge, you will add your API key as a parameter during your Merge client initialization.
+
+```python
+from __future__ import print_function
+
+import merge
+from merge.client import Merge
+
+# Swap YOUR_API_KEY below with your production key from:
+# https://app.merge.dev/keys
+# Swap YOUR_ACCOUNT_TOKEN with your account key from
+# the linked account page.
+merge_client = Merge(api_key="<YOUR_API_KEY>", account_token="<YOUR_ACCOUNT_TOKEN>")
+```
+
+## Linked Account tokens
+
+When sending requests to the Merge API regarding your end users’ data, you’ll only be authorized to access or manipulate that users’ data if they’ve gone through Merge Link and you’ve successfully stored their `account_token` for use with these requests.
+
+The `account_token` also serves to signify the particular integration you wish to interact with. You can find your `account_token` at the bottom right of each Linked Account's page under the end user organization information.
+
+![Lnked Account](img/EndUserPanelWithSpace.webp)
+
+Learn how to add Merge Link to your product and store your users’ `account_tokens` [here](https://docs.merge.dev/get-started/link/) and see how to use these `account_tokens` to authenticate your API requests below.
+
+![Select Integration](img/SelectIntegration.webp)
+
+If you’re writing your own requests, add your user’s `account_token` as a header called `X-Account-Token` to authorize your Merge API requests. The `account_token` must be included in the headers for every request in this format:
+
+`X-Account-Token: END_USER_ACCOUNT_TOKEN`
+
+If you’re using the Merge SDK in your backend to process requests related to your end users’ data, you will add your user’s account_token as a parameter called `x_account_token` to your request.
+
+```python
+import merge
+from merge.client import Merge
+
+merge_client = Merge(api_key="<YOUR_API_KEY>", account_token="<YOUR_ACCOUNT_TOKEN>")
+
+try:
+    employee = merge_client.hris.employees.list()
+except Exception as e:
+    print("Exception when calling EmployeesApi->employees_list: %s" % e)
+```
