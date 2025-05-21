@@ -25,9 +25,9 @@ jobs:
         run: npm install --frozen-lockfile
       # Adjuk hozzá ezt a lépést, hogy az API specifikáció is felépüljön.
       - name: Build API Docs
-        run: npm docusaurus gen-api-docs all
+        run: npm run docusaurus gen-api-docs all
       - name: Build website
-        run: npm build
+        run: npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
